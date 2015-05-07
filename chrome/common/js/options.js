@@ -19,13 +19,16 @@ define(['lib/jquery', 'lib/knockout', 'lib/knockout.validation', 'comm', 'util/v
                 return this.Type() != 'Rally';
             }, this);
             this.KeyVisible = ko.computed(function () {
-                return this.Type() == 'Gemini';
+                return this.Type() == 'Gemini' || this.Type() == 'Gitlab';
             }, this);
             this.PasswordVisible = ko.computed(function () {
-                return this.Type() != 'Gemini';
+                return this.Type() != 'Gemini' && this.Type() != 'Gitlab';
+            }, this);
+            this.LoginVisible = ko.computed(function () {
+                return this.Type() != 'Gitlab';
             }, this);
             this.Errors = ko.computed(function () {
-                var fields = [this.Login];
+                var fields = [];
                 if (this.UrlVisible()) {
                     fields.push(this.Url);
                 }
@@ -34,6 +37,9 @@ define(['lib/jquery', 'lib/knockout', 'lib/knockout.validation', 'comm', 'util/v
                 }
                 if (this.PasswordVisible()) {
                     fields.push(this.Password);
+                }
+                if (this.LoginVisible()) {
+                    fields.push(this.Login);
                 }
                 return ko.validation.group(fields);
             }, this);
@@ -74,6 +80,6 @@ define(['lib/jquery', 'lib/knockout', 'lib/knockout.validation', 'comm', 'util/v
         };
         return OptionsPageViewModel;
     })();
-    
+
     ko.applyBindings(new OptionsPageViewModel());
 });

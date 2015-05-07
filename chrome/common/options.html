@@ -70,6 +70,7 @@ input[type=password] {
                 <option value="Rally">Rally 2.X</option>
                 <option value="Redmine">Redmine 2.X</option>
                 <option value="YouTrack">YouTrack 4.X</option>
+                <option value="Gitlab">Gitlab 3.X</option>
             </select>
         </div>
         <div class="note" data-bind="visible: Type() == 'Redmine'">
@@ -79,7 +80,7 @@ input[type=password] {
             <label class="label" for="Url">Tracker URL:</label>
             <em>*</em><input type="text" id="Url" class="required" data-bind="value: Url">
         </div>
-        <div>
+        <div data-bind="visible: LoginVisible">
             <label class="label" for="Login">Login:</label>
             <em>*</em><input type="text" id="Login" class="required" data-bind="value: Login">
         </div>
