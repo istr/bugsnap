@@ -10,7 +10,7 @@ define(['lib/jquery', 'lib/knockout', 'comm/communicator', 'comm/fieldInfo'], fu
             // all issues manually and searching them would be too heavy. Also,
             // Gitlab's API will only load a maximum of 100 issues (this is what
             // we do for now).
-            return this.ajax(this.Url() + "api/v3/issues", {per_page: 100}).then(function (data) {
+            return this.ajax(this.Url() + "api/v3/issues", {per_page: 100}, 'GET').then(function (data) {
                 return $.map(data, function (item) {
                     item.Name = '#' + item.iid + " " + item.title;
                     item.Id = item.id;
@@ -87,6 +87,11 @@ define(['lib/jquery', 'lib/knockout', 'comm/communicator', 'comm/fieldInfo'], fu
                       deferred.resolve();
                     });
                   });
+                },
+                error: function (jqXHR, statusText) {
+                  if (jqXHR.status === 401) {
+                    alert('Please log in to Gitlab and try again.');
+                  }
                 }
               });
             });
