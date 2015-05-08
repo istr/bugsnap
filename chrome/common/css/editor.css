@@ -139,7 +139,7 @@ rect:hover, path:hover, text:hover {
 .tab.active {
     height: 37px;
     background: white;
-    border-bottom: 0;    
+    border-bottom: 0;
 }
 
 .control {
@@ -171,7 +171,7 @@ rect:hover, path:hover, text:hover {
 }
 .close-cont {
     width: 6%;
-    height: 37px;   
+    height: 37px;
     display: table;
 }
 .close {
@@ -188,7 +188,7 @@ rect:hover, path:hover, text:hover {
     color: white;
 }
 
-#palette, #copy {
+#palette {
     position: absolute;
     display: table;
 }

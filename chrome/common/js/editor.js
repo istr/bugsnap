@@ -80,9 +80,6 @@ define(['lib/jquery', 'lib/knockout', 'lib/knockout.validation', 'lib/raphael', 
             this.OldInstrument = ko.observable('');
             this.ActiveColorOffset = ko.observable(0);
             this.PaletteVisible = ko.observable(false);
-            this.CopyOffset = ko.observable(0);
-            this.CopyVisible = ko.observable(false);
-            this.CopyImage = ko.observable();
             this.init();
         }
         EditorViewModel.prototype.init = function () {
@@ -123,14 +120,6 @@ define(['lib/jquery', 'lib/knockout', 'lib/knockout.validation', 'lib/raphael', 
         };
         EditorViewModel.prototype.hidePalette = function () {
             this.PaletteVisible(false);
-        };
-        EditorViewModel.prototype.showCopy = function () {
-            this.CopyImage('data:image/png;base64,' + this.getImageData());
-            this.CopyOffset($('#copyButton').offset().left + $('#copyButton').outerWidth()/2 - $('#copy').outerWidth()/2);
-            this.CopyVisible(true);
-        };
-        EditorViewModel.prototype.hideCopy = function () {
-            this.CopyVisible(false);
         };
         EditorViewModel.prototype.clearEmptyText = function () {
             var activeObject = this.ActiveObject();
@@ -235,7 +224,7 @@ define(['lib/jquery', 'lib/knockout', 'lib/knockout.validation', 'lib/raphael', 
                     activeObject.attr('width', maxX - minX);
                     activeObject.attr('height', maxY - minY);
                     if(activeInstrument == 'Crop'){
-                        this.Shadow.Show(minX, minY, maxX - minX, maxY - minY);                        
+                        this.Shadow.Show(minX, minY, maxX - minX, maxY - minY);
                     }
                 } else if (activeInstrument == 'Arrow') {
                     var arrowPath = function(x1, y1, x2, y2, size) {

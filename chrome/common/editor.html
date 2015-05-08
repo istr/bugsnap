@@ -83,14 +83,11 @@
                 <i title="Submit" class="button" data-bind="click: send">
                     <i class="icon-large icon-ok"></i>
                 </i>
-                <i title="Save" class="button" data-bind="click: download, event: { mouseover: hideCopy }">
+                <i title="Save" class="button" data-bind="click: download">
                     <i class="icon-large icon-save"></i>
                 </i>
-                <i id="copyButton" title="Copy" class="button" data-bind="event: { mouseover: showCopy }">
-                    <i class="icon-large icon-copy"></i>
-                </i>
                 <a id="download" download="screenshot.png" style="display: none">Link ready</a>
-                <i title="Imgur" class="button" data-bind="click: imgur, event: { mouseover: hideCopy }">
+                <i title="Imgur" class="button" data-bind="click: imgur">
                     <i class="icon-large icon-imgur"></i>
                 </i>
                 <i title="Options" class="button right" data-bind="click: showOptionsPage">
@@ -105,13 +102,6 @@
                         <i class="icon-large" data-bind="style: {backgroundColor : $data}"></i>
                     </i>
                     <!-- /ko -->
-                </div>
-            </div>
-            <div style="display: none" id="copy" data-bind="visible: CopyVisible(), event: { mouseover: showCopy, mouseout: hideCopy }, style: {left : CopyOffset() + 'px'}">
-                <div class="popup-arrow"></div>
-                <div class="popup">
-                    <img data-bind="attr: {src: CopyImage}" width="100px" height="100px"><br>
-                    RClick - Copy
                 </div>
             </div>
         </div>
