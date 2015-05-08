@@ -3,15 +3,29 @@ This is Chrome extension that allows you to take page screenshots, annotate them
 
 Supported trackers:
 
+* GitLab
 * Gemini
 * Jira
 * Rally
 * Redmine
 * YouTrack
 
-[Get it for Chrome](https://chrome.google.com/webstore/detail/bugsnap/mfodpdfcbkmkdebahlkghnegochneenh)
+## Warning
 
-FireFox version will be available later.
+Since GitLab doesn't have an API endpoint for uploading files, we worked around it by posting
+directly to the GitLab site, once [API to attach attachments](http://feedback.gitlab.com/forums/176466-general/suggestions/3865548-api-to-attach-attachments-to-notes-issue-comments)
+is committed, the code will be updated.
+
+To be able to use this extensions, you need:
+
+- Your private token: https://YOUR_GITLAB_SERVER/profile/account
+- To be logged in at https://YOUR_GITLAB_SERVER in the same browser session
+- Set the options first and close and re-open the extension
+
+## Extension
+
+- [Get it for Chrome](https://chrome.google.com/webstore/detail/bugsnap-gitlab/fkpibgcheloimcdickpmcffanfcbdkjo)
+- [Original extension without GitLab support](https://chrome.google.com/webstore/detail/bugsnap/mfodpdfcbkmkdebahlkghnegochneenh)
 
 # Development
 
@@ -20,8 +34,7 @@ Setting environment and packaging:
 1. Install nodejs
 2. Install grunt (sudo npm install -g grunt-cli)
 3. Navigate to bugsnap root folder and install modules (npm install)
-4. Setup the environment (grunt install)
-5. Package extensions (grunt)
+4. Package extensions (grunt)
 
 Packaged extensions will appear in build folder.
 
