@@ -6,8 +6,13 @@ define(['lib/jquery', 'lib/knockout', 'lib/knockout.validation', 'comm', 'lib/jq
             this.Parent = options.Parent;
             this.Comment = ko.observable().extend({required: true});
             this.Title = ko.observable().extend({required: true});
+            this.Labels = ko.observable().extend({required: false});
             this.Description = ko.observable().extend({required: true});
             this.Issue = ko.observable().extend({required: true});
+            this.Type = ko.observable(localStorage['CommunicatorType'] || 'Gemini');
+            this.LabelsVisible = ko.computed(function () {
+                return this.Type() == 'Gitlab';
+            }, this);
             this.IssueId = ko.computed(function () {
                 var issue = this.Issue();
                 if (issue != null) {
@@ -26,7 +31,7 @@ define(['lib/jquery', 'lib/knockout', 'lib/knockout.validation', 'comm', 'lib/jq
         }
         DetailsViewModel.prototype.init = function () {
             var self = this;
-            this.CreateErrors = ko.validation.group([this.Title, this.Description]);
+            this.CreateErrors = ko.validation.group([this.Title, this.Description, this.Labels]);
             this.AttachErrors = ko.validation.group([this.Issue, this.Comment]);
             $("#issue").autocomplete({
                 appendTo: "#issue_dialog",
@@ -57,6 +62,41 @@ define(['lib/jquery', 'lib/knockout', 'lib/knockout.validation', 'comm', 'lib/jq
                     return false;
                 }
             });
+            if (this.Type() == 'Gitlab') {
+              $("#labels").autocomplete({
+                  appendTo: "#issue_dialog",
+                  minLength: 1,
+                  source: function(request, response) {
+                      var label = self.Communicator.searchLabel(request.term.split(/,\s*/).pop(), self.Fields);
+                      if (label != null) {
+                          label.done(function (data) {
+                              if(data.constructor != Array) {
+                                  data = new Array(data);
+                              }
+                              var labeledData = $.map(data, function (item) {
+                                  item.label = item.Name;
+                                  item.value = item.Id;
+                                  return item;
+                              });
+                              response(labeledData);
+                          });
+                      }
+                  },
+                  focus: function( event, ui ) {
+                      return false;
+                  },
+                  select: function(event, ui) {
+                      var terms = this.value.split(/,\s*/);
+                      // remove the current input
+                      terms.pop();
+                      // add the selected item
+                      terms.push(ui.item.label);
+                      $("#labels").val(terms.join(', '));
+                      self.Labels(terms);
+                      return false;
+                  }
+              });
+            }
             $("#issue_dialog").dialog(
                 {
                     draggable: false,
@@ -80,7 +120,7 @@ define(['lib/jquery', 'lib/knockout', 'lib/knockout.validation', 'comm', 'lib/jq
             var self = this;
             $("#issue_dialog").showLoading();
             this.Communicator.comment(this.IssueId(), this.Comment(), this.Fields).then(function () {
-                return self.Communicator.attach(self.IssueId(), imageData, self.Fields);
+                  return self.Communicator.attach(self.IssueId(), imageData, self.Fields);
             }).done(function () {
                 $("#issue_dialog").hideLoading().dialog("close");
                 location.href = self.Communicator.getRedirectUrl(self.IssueId(), self.Fields);
@@ -95,11 +135,23 @@ define(['lib/jquery', 'lib/knockout', 'lib/knockout.validation', 'comm', 'lib/jq
             var self = this;
             $("#issue_dialog").showLoading();
             var issueId = null;
-            this.Communicator.create(
-                    this.Title(),
-                    this.Description(),
-                    this.Fields
-                ).then(function (data) {
+            var create;
+            if (this.Type() == 'Gitlab') {
+              create = this.Communicator.create(
+                  this.Title(),
+                  this.Description(),
+                  this.Fields,
+                  this.Labels()
+              );
+            }
+            else {
+              create = this.Communicator.create(
+                  this.Title(),
+                  this.Description(),
+                  this.Fields
+              );
+            }
+            create.then(function (data) {
                     issueId = data.Id;
                     return self.Communicator.attach(issueId, imageData, self.Fields);
                 }).done(function () {

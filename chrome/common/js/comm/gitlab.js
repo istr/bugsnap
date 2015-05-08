@@ -18,6 +18,17 @@ define(['lib/jquery', 'lib/knockout', 'comm/communicator', 'comm/fieldInfo'], fu
                 });
             });
         };
+        GitlabCommunicator.prototype.searchLabel = function (query, fields) {
+          return this.ajax(this.Url() + "api/v3/projects/" + fields.project.Value() + "/labels", {per_page: 100}, 'GET').then(function (data) {
+                return $.grep($.map(data, function (item) {
+                    item.Name = item.name;
+                    item.Id = item.name;
+                    return item.name.toLowerCase().indexOf(query.toLowerCase()) === -1 ? false : item;
+                }), function (item) {
+                  return item !== false;
+                });
+            });
+        };
         GitlabCommunicator.prototype.comment = function (issueId, comment, fields) {
             var data = {
                 id: fields.project.Value(),
@@ -97,11 +108,12 @@ define(['lib/jquery', 'lib/knockout', 'comm/communicator', 'comm/fieldInfo'], fu
             });
             return deferred.promise();
         };
-        GitlabCommunicator.prototype.create = function (title, description, fields) {
+        GitlabCommunicator.prototype.create = function (title, description, fields, labels) {
             var data = {
                 title: title,
                 description: description,
-                id: fields.project.Value()
+                id: fields.project.Value(),
+                labels: labels.join(',')
             };
             return this.ajax(this.Url() + 'api/v3/projects/' + fields.project.Value() + '/issues', data).then(function (data) {
               data.Id = data.id;
