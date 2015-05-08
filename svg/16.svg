@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg id="svg2" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="16.065" width="16" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+ <metadata id="metadata7">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g id="layer1" stroke-linejoin="miter" transform="matrix(0.12376944,0,0,0.12376944,-12.714596,-67.405465)" stroke="#000" stroke-linecap="butt" stroke-dasharray="none" stroke-miterlimit="4">
+  <path id="path2999" stroke-width="2.329" fill="none" d="m143.95,582.34c7.5029-29.321,33.436-35.46,43.666-0.17762"/>
+  <path id="path3003" d="m175.91,586.62c-5.6107,2.7846-13.614,2.5474-33.986,0.30273-2.6332,4.573-5.2677,12.192-5.7767,22.022,25.899,4.8967,36.303-15.287,39.763-22.324z" stroke="#000" stroke-width="2.329" fill="#F00"/>
+  <path id="path3005" stroke-width="2.329" fill="#65ccff" d="m135.3,615.35c23.338,2.6937,34.422-3.8158,46.514-27.043,2.2993,24.733-15.479,54.858-34.63,63.643-8.0547-7.536-13.289-16.359-11.884-36.6z"/>
+  <path id="path3007" stroke-width="2.329" fill="#fff500" d="m188.82,587.89c-1.4166,45.511-29.103,66.685-36.71,68.039,34.791,18.661,60.613-35.581,36.71-68.039z"/>
+  <path id="path3783" stroke-width="1.32599998" fill="none" d="m151.83,565.12-5.1318-7.8494z"/>
+  <path id="path3787" stroke-width="1.32599998" fill="none" d="m138.52,593.28-8.5687-7.1841"/>
+  <path id="path3789" stroke-width="1.32599998" fill="none" d="m135.19,621.62-12.428-0.23212"/>
+  <path id="path3791" stroke-width="1.32599998" fill="none" d="m142.36,647.99-11.763,4.1028"/>
+  <path id="path3793" stroke-width="1.32599998" fill="none" d="m192.48,593.67,10.564-6.8771"/>
+  <path id="path3795" stroke-width="1.32599998" fill="none" d="m198.27,621.44,10.901-0.25903"/>
+  <path id="path3801" d="m104.51,563.25,0-16.863,16.266,0" stroke-miterlimit="4" stroke-dasharray="none" stroke-width="3.55625892" fill="none"/>
+  <path id="path3803" d="m230.22,656.54,0,16.082-17.039,0" stroke-miterlimit="4" stroke-dasharray="none" stroke-width="3.55625892" fill="none"/>
+  <path id="path3783-3" stroke-width="1.32599998" fill="none" d="m179.61,565.36,5.505-7.9683z"/>
+  <path id="path3791-3" stroke-width="1.32599998" fill="none" d="m187.77,647.92,11.763,4.1028"/>
+ </g>
+ <g id="layer2" stroke-linejoin="miter" stroke-dashoffset="0" transform="translate(-16.280012,-96.372428)" stroke="#000" stroke-linecap="butt" stroke-dasharray="0.80000001, 9.60000014" stroke-miterlimit="4" stroke-width="0.80000001" display="none" fill="none">
+  <path id="path3955" d="m17.06,30.193,0,80.499,79.811,0"/>
+  <path id="path3957" d="m29.707,17.12,80.512,0,0,80.901"/>
+ </g>
+</svg>
