@@ -799,3 +799,7 @@ body .ui-tooltip {
 	filter: Alpha(Opacity=30);
 	border-radius: 8px;
 }
+
+.ui-dialog {
+	padding: 5px;
+}
