@@ -153,7 +153,7 @@ define(['lib/jquery', 'lib/knockout', 'lib/knockout.validation', 'comm', 'lib/jq
             }
             create.then(function (data) {
                     issueId = data.Id;
-                    return self.Communicator.attach(issueId, imageData, self.Fields);
+                    return self.Communicator.attach(issueId, imageData, self.Fields, true);
                 }).done(function () {
                     $("#issue_dialog").hideLoading().dialog("close");
                     location.href = self.Communicator.getRedirectUrl(issueId, self.Fields);
