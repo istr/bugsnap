@@ -63,7 +63,6 @@ define(['lib/jquery', 'lib/knockout', 'comm/communicator', 'comm/fieldInfo'], fu
               var now = new Date();
               var name = '' + now.toISOString().slice(0, 10) + '-screenshot.png';
               formData.append('file', fileBlob, name);
-              console.log('POST FILE', formData, formData.toString(), fileBlob, binary, binary.length);
               $.ajax({
                 url: fields.project.Option().WebUrl + '/uploads',
                 type: 'POST',
