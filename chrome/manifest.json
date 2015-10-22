@@ -4,9 +4,9 @@
         "page": "background.html"
     },
     "options_page": "common/options.html",
-    "name": "BugSnap (Gitlab)",
+    "name": "BugSnap (Gitlab improved)",
     "description": "Shoot your bug and send photo to your tracker.",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "icons": {
         "16": "common/img/16.png",
         "32": "common/img/32.png",
